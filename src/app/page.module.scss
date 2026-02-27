@@ -1,0 +1,144 @@
+.pageContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.contentOverlay {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 4rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+
+  .logo {
+    width: 290px;
+    height: 48px;
+    object-fit: contain;
+
+    @media (max-width: 768px) {
+      width: 220px;
+      height: 36px;
+    }
+
+    @media (max-width: 480px) {
+      width: 180px;
+      height: 30px;
+    }
+  }
+}
+
+.mainWrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 11px;
+  max-width: 931px;
+  width: 100%;
+
+  .title {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    line-height: normal;
+    color: #ffffff;
+    margin: 0;
+
+    .highlight {
+      color: #93d50a;
+    }
+
+    @media (max-width: 1024px) {
+      font-size: 64px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 48px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 36px;
+    }
+  }
+
+  .subtitle {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 27px;
+    font-weight: 300;
+    line-height: normal;
+    color: #c1c1c1;
+    margin: 0;
+    white-space: pre-wrap;
+
+    @media (max-width: 1024px) {
+      font-size: 22px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
+  }
+}
