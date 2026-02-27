@@ -7,7 +7,7 @@ export default function Home() {
       {/* Background Image Overlay */}
       <div className={styles.background}>
         <Image
-          src="/assets/background.png"
+          src="/assets/bg-image.png"
           alt="Technical Background"
           fill
           priority
@@ -18,12 +18,14 @@ export default function Home() {
       {/* Main Content Layout */}
       <div className={styles.contentOverlay}>
         <header className={styles.header}>
-          {/* Temporary inline SVG replacement for missing localhost logo */}
-          <svg width="290" height="48" viewBox="0 0 290 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
-            <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fill="#93d50a" fontSize="36" fontFamily="SF Pro Display, sans-serif" fontWeight="bold">
-              XARK
-            </text>
-          </svg>
+          <Image
+            src="/assets/xark-green-logo.png"
+            alt="XARK Technologies Logo"
+            width={290}
+            height={48}
+            className={styles.logo}
+            priority
+          />
         </header>
 
         <main className={styles.mainWrapper}>
