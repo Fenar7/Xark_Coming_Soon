@@ -1,0 +1,203 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    // Subtle radial glow from center
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 55% 55% at 50% 52%, rgba(147, 213, 10, 0.05) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    // CRT scanline texture
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(0deg,
+                transparent,
+                transparent 3px,
+                rgba(0, 0, 0, 0.08) 3px,
+                rgba(0, 0, 0, 0.08) 4px);
+        pointer-events: none;
+        z-index: 1;
+    }
+}
+
+.center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    z-index: 2;
+}
+
+// Logo area — scan beam + clip-path reveal happen here
+.logoArea {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+}
+
+.logoWrapper {
+    position: relative;
+    clip-path: inset(0% 0% 100% 0%); // hidden initially, revealed top→bottom
+    filter: drop-shadow(0 0 0px transparent);
+}
+
+.logoImage {
+    display: block;
+    width: 290px;
+    height: 48px;
+    object-fit: contain;
+
+    @media (max-width: 768px) {
+        width: 220px;
+        height: 36px;
+    }
+
+    @media (max-width: 480px) {
+        width: 180px;
+        height: 30px;
+    }
+}
+
+// Glowing scan beam that moves top→bottom through the logo
+.scanBeam {
+    position: absolute;
+    top: 1.5rem; // starts at top of logoArea padding
+    left: -10%;
+    width: 120%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(147, 213, 10, 0.4) 20%, #93d50a 40%, #d4f53c 50%, #93d50a 60%, rgba(147, 213, 10, 0.4) 80%, transparent 100%);
+    filter: blur(0.5px);
+    box-shadow:
+        0 0 8px #93d50a,
+        0 0 20px rgba(147, 213, 10, 0.6),
+        0 0 40px rgba(147, 213, 10, 0.3);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+// Signal rings centered on the logo area
+.ringsContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(147, 213, 10, 0.7);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.ring1 {
+    width: 160px;
+    height: 160px;
+    top: 0;
+    left: 0;
+}
+
+.ring2 {
+    width: 240px;
+    height: 240px;
+    top: 0;
+    left: 0;
+}
+
+.ring3 {
+    width: 320px;
+    height: 320px;
+    top: 0;
+    left: 0;
+}
+
+// Subtle tagline under logo
+.tagline {
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', Consolas, monospace;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    color: rgba(147, 213, 10, 0.45);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+// Bottom HUD bar
+.bottom {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    z-index: 2;
+
+    @media (max-width: 480px) {
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
+}
+
+.status {
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', Consolas, monospace;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: rgba(147, 213, 10, 0.6);
+    white-space: nowrap;
+    min-width: 130px;
+    transition: color 0.3s ease;
+
+    @media (max-width: 480px) {
+        display: none;
+    }
+}
+
+.progressTrack {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #93d50a, #d4f53c);
+    transform-origin: left center;
+    transform: scaleX(0);
+    box-shadow: 0 0 6px #93d50a;
+}
+
+.counter {
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.35);
+    min-width: 2.5rem;
+    text-align: right;
+}

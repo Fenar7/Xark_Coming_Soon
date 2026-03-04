@@ -16,17 +16,10 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-  }
+  // Starts zoomed in — GSAP animates scale back to 1
+  transform: scale(1.18);
+  transform-origin: center center;
+  will-change: transform;
 
   img {
     width: 100%;
@@ -53,12 +46,16 @@
   }
 }
 
+// Header: starts hidden and above, GSAP animates in
 .header {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 2rem;
+  opacity: 0;
+  transform: translateY(-25px);
+  will-change: transform, opacity;
 
   .logo {
     width: 290px;
@@ -91,54 +88,72 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 11px;
+  gap: 14px;
   max-width: 931px;
   width: 100%;
+}
 
-  .title {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 80px;
-    font-weight: 700;
-    line-height: normal;
-    color: #ffffff;
-    margin: 0;
+.title {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: normal;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 0.25em;
 
-    .highlight {
-      color: #93d50a;
-    }
-
-    @media (max-width: 1024px) {
-      font-size: 64px;
-    }
-
-    @media (max-width: 768px) {
-      font-size: 48px;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 36px;
-    }
+  @media (max-width: 1024px) {
+    font-size: 64px;
   }
 
-  .subtitle {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 27px;
-    font-weight: 300;
-    line-height: normal;
-    color: #c1c1c1;
-    margin: 0;
-    white-space: pre-wrap;
+  @media (max-width: 768px) {
+    font-size: 48px;
+  }
 
-    @media (max-width: 1024px) {
-      font-size: 22px;
-    }
+  @media (max-width: 480px) {
+    font-size: 36px;
+  }
+}
 
-    @media (max-width: 768px) {
-      font-size: 18px;
-    }
+// Each title word: starts hidden below, GSAP animates in
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(65px);
+  will-change: transform, opacity;
+}
 
-    @media (max-width: 480px) {
-      font-size: 16px;
-    }
+.highlight {
+  color: #93d50a;
+}
+
+// Subtitle: starts hidden, GSAP animates in
+.subtitle {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: normal;
+  color: #c1c1c1;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: transform, opacity;
+
+  @media (max-width: 1024px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    padding: 0 0.5rem;
   }
 }
