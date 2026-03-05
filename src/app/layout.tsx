@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "XARK Technologies — Coming Soon",
   description: "XARK Technologies. RF components, antenna systems, and design services. Site goes live shortly.",
+  icons: {
+    icon: "/assets/xark-green-logo.png",
+    shortcut: "/assets/xark-green-logo.png",
+    apple: "/assets/xark-green-logo.png",
+  },
 };
 
 export default function RootLayout({
